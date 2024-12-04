@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TawuranTactics3D.sln"
+    "dotnet.defaultSolution": "TawuranTactics3D-TPG.sln"
 }
