@@ -10,6 +10,7 @@ public class GridMap : MonoBehaviour
     [SerializeField] int length = 25;
     [SerializeField] float cellSize = 1f;
     [SerializeField] LayerMask obstacleLayer;
+    [SerializeField] LayerMask terrainLayer;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class GridMap : MonoBehaviour
                 gridMap[x,z] = new Node();
             }
         }
+        CalculateElevation();
         CheckPassableTerrain();
     
     }
@@ -36,7 +38,6 @@ public class GridMap : MonoBehaviour
             {
                 Vector3 worldPosition = GetWorldPosition(x,z);
                 bool passable = !Physics.CheckBox(worldPosition, Vector3.one/2 * cellSize, Quaternion.identity, obstacleLayer);
-                gridMap[x,z] = new Node();
                 gridMap[x,z].passable = passable;
             }
         }
@@ -44,26 +45,37 @@ public class GridMap : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (gridMap == null) {return;}
-        for (int z = 0; z < width; z++)
-        {
-            for (int x = 0; x < length; x++)
+        if (gridMap == null) {
+            for (int z = 0; z < width; z++)
             {
-                Vector3 pos = GetWorldPosition(x, z);
-                Gizmos.color = gridMap[x,z].passable ? Color.white : Color.red;
-                Gizmos.DrawCube(pos, Vector3.one / 4);
+                for (int x = 0; x < length; x++)
+                {
+                    Vector3 pos = GetWorldPosition(x, z);
+                    //Gizmos.color = gridMap[x,z].passable ? Color.white : Color.red;
+                    Gizmos.DrawCube(pos, Vector3.one / 4);
+                }
+            }
+        }else {
+            for (int z = 0; z < width; z++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    Vector3 pos = GetWorldPosition(x, z, true);
+                    Gizmos.color = gridMap[x,z].passable ? Color.white : Color.red;
+                    Gizmos.DrawCube(pos, Vector3.one / 4);
+                }
             }
         }
+        
     }
 
-    private Vector3 GetWorldPosition(int x, int z)
+    private Vector3 GetWorldPosition(int x, int z,bool elevation = false)
     {
-        return new Vector3(transform.position.x + (x * cellSize), 0f, transform.position.z + (z * cellSize));
+        return new Vector3(x * cellSize, elevation ? gridMap[x,z].elevation : 0f, z * cellSize);
     }
 
     public Vector2Int GetGridPosition(Vector3 worldPosition)
-    {
-       worldPosition -= transform.position;
+    {   
        Vector2Int positionOnGrid = new Vector2Int((int) (worldPosition.x/cellSize), (int) (worldPosition.z/cellSize));
        return positionOnGrid;
     }
@@ -98,6 +110,19 @@ public class GridMap : MonoBehaviour
         }  
         return true;
         
+    }
+    private void CalculateElevation(){
+        for (int z = 0; z < width; z++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    Ray ray = new Ray(GetWorldPosition(x,z)+Vector3.up*100, Vector3.down);
+                    RaycastHit hit;
+                    if(Physics.Raycast(ray,out hit, float.MaxValue, terrainLayer)){
+                        gridMap[x,z].elevation = hit.point.y;
+                    }
+                }
+            }
     }
 }
 
