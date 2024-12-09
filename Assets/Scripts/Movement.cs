@@ -21,19 +21,28 @@ public class Movement : MonoBehaviour
     public void Move(List<PathNode> path)
     {
         pathWorldPositions = gridObject.targetGrid.ConvertPathNodesToWorldPositions(path);
+        // Debug.Log("GET" +pathWorldPositions[0]);
 
         gridObject.positionOnGrid.x = path[path.Count - 1].pos_x;
         gridObject.positionOnGrid.y = path[path.Count - 1].pos_y;
 
-
+        
         RotateCharacter();
+
+
+        
         characterAnimator.StartMoving();
+        
     }
 
     private void Update()
     {
-        if (pathWorldPositions != null) { return; }
-        if (pathWorldPositions.Count == 0) { return; }
+        if (pathWorldPositions != null) { 
+            Debug.Log("path World position is null"); 
+            return; }
+        if (pathWorldPositions.Count == 0) { 
+            Debug.Log("path World position is zero"); 
+            return; }
 
         transform.position = Vector3.MoveTowards(transform.position, pathWorldPositions[0], moveSpeed * Time.deltaTime);
 

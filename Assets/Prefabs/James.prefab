@@ -11,37 +11,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05078745
+      value: 4.71
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.199
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.6035805
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.07445662
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9972243
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 171.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
@@ -79,7 +79,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b3935097adab3347aa52a6a2e9a7a77,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8344700444883003934}
+      addedObject: {fileID: 5392649790434435923}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b3935097adab3347aa52a6a2e9a7a77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4342552988767662456}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b3935097adab3347aa52a6a2e9a7a77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8699990072308445989}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b3935097adab3347aa52a6a2e9a7a77,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8356602013226739511}
   m_SourcePrefab: {fileID: 100100000, guid: 9b3935097adab3347aa52a6a2e9a7a77, type: 3}
 --- !u!1 &1017148860840947877 stripped
 GameObject:
@@ -108,7 +120,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8344700444883003934
+--- !u!114 &5392649790434435923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,6 +129,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017148860840947877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad5cec8af2e2f3459862bf55c38b289, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f911fe0c024cb446b75453e3f871a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: 0
+  attack: 0
+--- !u!114 &4342552988767662456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017148860840947877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77123362e3139ba4897632d617ca78dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: James
+  movementPoints: 50
+--- !u!114 &8699990072308445989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017148860840947877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2070ecceefd0a254488274cee8b17310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetGrid: {fileID: 0}
+  positionOnGrid: {x: 0, y: 0}
+--- !u!114 &8356602013226739511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017148860840947877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b70d50a073f45d4d89a9d530045f899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterAnimator: {fileID: 5392649790434435923}
+  moveSpeed: 0.91

@@ -43,9 +43,9 @@ public class Pathfinding : MonoBehaviour
 
             pathNodes = new PathNode[gridmap.length, gridmap.width];
 
-            for(int x = 0; x < gridmap.width; x++)
+            for(int x = 0; x < gridmap.length; x++)
             {
-                for(int y = 0; y < gridmap.length; y++)
+                for(int y = 0; y < gridmap.width; y++)
                 {
                     pathNodes[x, y] = new PathNode(x, y);
                 }

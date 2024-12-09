@@ -77,8 +77,8 @@ public class GridMap : MonoBehaviour
 
     public Vector2Int GetGridPosition(Vector3 worldPosition) 
     {   
-       worldPosition.x -= cellSize/2;
-       worldPosition.z -= cellSize/2;
+       worldPosition.x += cellSize/2;
+       worldPosition.z += cellSize/2;
        Vector2Int positionOnGrid = new Vector2Int((int) (worldPosition.x/cellSize), (int) (worldPosition.z/cellSize));
        return positionOnGrid;
     }
