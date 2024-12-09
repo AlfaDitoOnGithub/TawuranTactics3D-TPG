@@ -6,8 +6,8 @@ using UnityEngine;
 public class GridMap : MonoBehaviour
 {
     Node[,] gridMap;
-    [SerializeField] int width = 25;
-    [SerializeField] int length = 25;
+    public int width = 25;
+    public int length = 25;
     [SerializeField] float cellSize = 1f;
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask terrainLayer;
@@ -69,7 +69,7 @@ public class GridMap : MonoBehaviour
         
     }
 
-    private Vector3 GetWorldPosition(int x, int z,bool elevation = false)
+    public Vector3 GetWorldPosition(int x, int z,bool elevation = false)
     {
         return new Vector3(x * cellSize, elevation ? gridMap[x,z].elevation : 0f, z * cellSize);
     }
@@ -111,6 +111,20 @@ public class GridMap : MonoBehaviour
         return true;
         
     }
+
+    internal bool CheckBoundary(int posX, int posY)
+    {
+        if (posX < 0 || posX >= length)
+        {
+            return false;
+        }
+        if (posY < 0 || posY >= width)
+        {
+            return false;
+        }
+        return true;
+    }
+
     private void CalculateElevation(){
         for (int z = 0; z < width; z++)
             {
@@ -123,6 +137,11 @@ public class GridMap : MonoBehaviour
                     }
                 }
             }
+    }
+
+    public bool CheckWalkable(int pos_x, int pos_y)
+    {
+        return gridMap[pos_x, pos_y].passable;
     }
 }
 
