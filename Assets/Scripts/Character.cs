@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public string charName = "nameless";
+    [SerializeField] public string charName = "nameless";
+    public float movementPoints = 50f;
 }
