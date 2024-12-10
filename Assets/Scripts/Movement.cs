@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     {
         gridObject = GetComponent<GridObject>();
         characterAnimator = GetComponent<CharacterAnimator>();
+        pathWorldPositions = null;
     }
 
     public void Move(List<PathNode> path)
@@ -37,11 +38,11 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (pathWorldPositions != null) { 
-            Debug.Log("path World position is null"); 
+        if (pathWorldPositions == null) { 
+            // Debug.Log("path World position is null"); 
             return; }
         if (pathWorldPositions.Count == 0) { 
-            Debug.Log("path World position is zero"); 
+            // Debug.Log("path World position is zero"); 
             return; }
 
         transform.position = Vector3.MoveTowards(transform.position, pathWorldPositions[0], moveSpeed * Time.deltaTime);
