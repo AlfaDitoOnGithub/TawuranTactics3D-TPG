@@ -219,4 +219,21 @@ public class Pathfinding : MonoBehaviour
 
         return path;
     }
+
+    public List<PathNode> TraceBackPath(int x, int y)
+    {
+        if (gridmap.CheckBoundary(x, y) == false)
+        {
+            return null;
+        }
+        List<PathNode> path = new List<PathNode>();
+        PathNode currentNode = pathNodes[x, y];
+        while(currentNode.parentNode != null) 
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parentNode;
+        }
+
+        return path;
+    }
 }
