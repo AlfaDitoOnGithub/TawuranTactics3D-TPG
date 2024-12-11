@@ -78,7 +78,7 @@ public class SelectCharacter : MonoBehaviour
         }
     }
 
-    internal void Deselect()
+    public void Deselect()
     {
         selected =null;
     }

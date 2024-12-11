@@ -77,6 +77,7 @@ public class CommandInput : MonoBehaviour
                 commandManager.AddAttackCommand(selectCharacter.selected, mouseInput.positionOnGrid, gridObject);
                 selectCharacter.Deselect();
                 selectCharacter.enabled = true;
+                isInputCommand = false;
             }
         }
     }
@@ -97,6 +98,7 @@ public class CommandInput : MonoBehaviour
             commandManager.AddMoveCommand(selectCharacter.selected, mouseInput.positionOnGrid, path);
             selectCharacter.Deselect();
             selectCharacter.enabled = true;
+            isInputCommand = false;
         }
         if(Input.GetMouseButtonDown(1)){
             // selectCharacter.selected.GetComponent<Movement>().SkipAnimation();
