@@ -41,10 +41,13 @@ public class MoveCharacter : MonoBehaviour
     public List<PathNode> GetPath(Vector2Int from){
         
         List<PathNode> path = pathfinding.TraceBackPath(from.x, from.y);
-        path.Reverse();
+       
 
         if(path == null) { return null; }
         if(path.Count == 0) { return null; }
+        
+        path.Reverse();
+        
         return path;
         
     }

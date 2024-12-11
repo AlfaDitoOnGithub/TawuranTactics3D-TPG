@@ -21,12 +21,19 @@ public class Command {
     }
 
     public List<PathNode> path;
+    public GridObject target;
 }
 
 public class CommandManager : MonoBehaviour
 {
     Command currentCommand;
     CommandInput commandInput;
+    ClearUtility clearUtility;
+
+    private void Awake()
+    {
+        clearUtility.GetComponent<ClearUtility>();
+    }
 
     private void Start()
     {
@@ -40,8 +47,9 @@ public class CommandManager : MonoBehaviour
             ExecuteCommand();
         }
     }
-    public void AddAttackCommand(Character character, Vector2Int selectedGrid){
+    public void AddAttackCommand(Character character, Vector2Int selectedGrid, GridObject target){
         currentCommand = new Command(character, selectedGrid, CommandType.Attack);
+        currentCommand.target = target;
     }
 
     public void AddMoveCommand(Character character, Vector2Int selectedGrid, List<PathNode> path)
@@ -50,10 +58,38 @@ public class CommandManager : MonoBehaviour
         currentCommand.path = path;
     }
 
-    public void ExecuteCommand(){
+    public void ExecuteCommand()
+    {
+        switch (currentCommand.commandType)
+        {
+            case CommandType.MoveTo:
+                MovementCommandExecute();
+                break;
+            case CommandType.Attack:
+                AttackCommandExecute();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void AttackCommandExecute()
+    {
+        Character receiver = currentCommand.character;
+        receiver.GetComponent<Attack>().AttackPosition(currentCommand.target);
+        receiver.GetComponent<CharacterTurn>().canAct =false;
+        currentCommand = null;
+        clearUtility.ClearPF();
+        clearUtility.ClearMoveHighlight();
+        
+    }
+
+    private void MovementCommandExecute()
+    {
         Character reciever = currentCommand.character;
         reciever.GetComponent<Movement>().Move(currentCommand.path);
+        reciever.GetComponent<CharacterTurn>().canWalk =false;
         currentCommand = null;
-        commandInput.HighlightWalkableTerrain();
+        clearUtility.ClearAttackHighlight();
     }
 }

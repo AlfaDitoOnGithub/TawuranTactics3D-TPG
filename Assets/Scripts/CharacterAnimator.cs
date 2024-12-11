@@ -28,18 +28,15 @@ public class CharacterAnimator : MonoBehaviour
         attack = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         animator.SetBool("Attack", attack);
         animator.SetBool("Move", move);
-    }
 
-    private void LateUpdate()
-    {
         if(attack == true)
         {
             attack = false;
-            animator.SetBool("Attack", attack);
+            // animator.SetBool("Attack", attack);
         }
     }
 }

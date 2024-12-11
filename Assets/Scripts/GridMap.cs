@@ -85,8 +85,6 @@ public class GridMap : MonoBehaviour
     internal void RemoveObject(Vector2Int positionOnGrid, GridObject gridObject)
     {
         if(CheckBoundary(positionOnGrid)){
-          if(gridMap[positionOnGrid.x, positionOnGrid.y].gridObject == gridObject)
-          { return;}
           gridMap[positionOnGrid.x, positionOnGrid.y].gridObject = null;
         }
         else{
