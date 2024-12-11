@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GridHighlight : MonoBehaviour
@@ -48,6 +49,7 @@ public class GridHighlight : MonoBehaviour
 
     public void Highlight(int posX, int posY, GameObject highlightObject)
     {
+        highlightObject.SetActive(true);
         Vector3 position = grid.GetWorldPosition(posX, posY, true);
         position += Vector3.up * 0.2f;
         highlightObject.transform.position = position;
@@ -59,6 +61,14 @@ public class GridHighlight : MonoBehaviour
         for (int i = 0; i < walkableNodes.Count; i++)
         {
             Highlight(walkableNodes[i].pos_x, walkableNodes[i].pos_y, GetHighlightPointGO(i));   
+        }
+    }
+
+    internal void Hide()
+    {
+        for (int i = 0; i < highlightPointsGO.Count; i++)
+        {
+            highlightPointsGO[i].SetActive(false);
         }
     }
 }

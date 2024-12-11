@@ -10,7 +10,7 @@ public class Marker : MonoBehaviour
     Vector2Int currentPosition;
     bool active;
     [SerializeField] GridMap targetGrid;
-    [SerializeField] float elevation;
+    [SerializeField] float elevation = 2f;
 
 
     private void Awake()

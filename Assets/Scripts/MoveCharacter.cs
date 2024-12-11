@@ -6,54 +6,54 @@ using UnityEngine;
 public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] GridMap targetGrid;
-    [SerializeField] LayerMask terrainLayer;
+    // [SerializeField] LayerMask terrainLayer;
 
-    [SerializeField] GridObject targetCharacter;
+    // [SerializeField] GridObject targetCharacter;
 
 
     Pathfinding pathfinding;
-    List<PathNode> path;
+    // List<PathNode> path;
 
     [SerializeField] GridHighlight gridHighlight;
 
     private void Start()
     {
         pathfinding = targetGrid.GetComponent<Pathfinding>();
-        CheckWalkableTerrain();
+        // CheckWalkableTerrain();
     }
 
-    private void CheckWalkableTerrain()
+    public void CheckWalkableTerrain(Character targetCharacter)
     {
+        GridObject gridObject = targetCharacter.GetComponent<GridObject>();
 
         List<PathNode> walkableNodes = new List<PathNode>();
+        pathfinding.Clear();
         pathfinding.CalculateWalkableNodes(
-            targetCharacter.positionOnGrid.x, 
-            targetCharacter.positionOnGrid.y,
-            targetCharacter.GetComponent<Character>().movementPoints, 
+            gridObject.positionOnGrid.x, 
+            gridObject.positionOnGrid.y,
+            targetCharacter.movementPoints, 
             ref walkableNodes
             );
+        gridHighlight.Hide();
         gridHighlight.Highlight(walkableNodes);
+    }
+
+    public List<PathNode> GetPath(Vector2Int from){
+        
+        List<PathNode> path = pathfinding.TraceBackPath(from.x, from.y);
+        path.Reverse();
+
+        if(path == null) { return null; }
+        if(path.Count == 0) { return null; }
+        return path;
+        
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, float.MaxValue, terrainLayer))
-            {
-                Vector2Int gridPosition = targetGrid.GetGridPosition(hit.point);
-
-                //path = pathfinding.FindPath(targetCharacter.positionOnGrid.x, targetCharacter.positionOnGrid.y, gridPosition.x, gridPosition.y);
-                path = pathfinding.TraceBackPath(gridPosition.x, gridPosition.y);
-                path.Reverse();
-
-                if(path == null) { return; }
-                if(path.Count == 0) { return; }
-                targetCharacter.GetComponent<Movement>().Move(path);
-            }
-        }
+        
+        
+            
+        
     }
 }

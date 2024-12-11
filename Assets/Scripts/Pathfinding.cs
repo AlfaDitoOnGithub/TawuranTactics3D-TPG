@@ -22,6 +22,13 @@ public class PathNode
         pos_x = xPos;
         pos_y = yPos;  
     }
+
+    internal void Clear()
+    {
+        gValue =0f;
+        hValue =0f;
+        parentNode =null;
+    }
 }
 
 [RequireComponent(typeof(GridMap))]
@@ -235,5 +242,16 @@ public class Pathfinding : MonoBehaviour
         }
 
         return path;
+    }
+
+    internal void Clear()
+    {
+         for(int x = 0; x < gridmap.length; x++)
+            {
+                for(int y = 0; y < gridmap.width; y++)
+                {
+                   pathNodes[x,y].Clear();
+                }
+            }
     }
 }

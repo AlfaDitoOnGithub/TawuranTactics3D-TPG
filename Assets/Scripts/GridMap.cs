@@ -72,7 +72,7 @@ public class GridMap : MonoBehaviour
 
     public Vector3 GetWorldPosition(int x, int z,bool elevation = false)
     {
-        return new Vector3(x * cellSize, elevation ? gridMap[x,z].elevation : 0f, z * cellSize);
+        return new Vector3(x * cellSize, elevation == true ? gridMap[x,z].elevation : 0f, z * cellSize);
     }
 
     public Vector2Int GetGridPosition(Vector3 worldPosition) 
@@ -81,6 +81,17 @@ public class GridMap : MonoBehaviour
        worldPosition.z += cellSize/2;
        Vector2Int positionOnGrid = new Vector2Int((int) (worldPosition.x/cellSize), (int) (worldPosition.z/cellSize));
        return positionOnGrid;
+    }
+    internal void RemoveObject(Vector2Int positionOnGrid, GridObject gridObject)
+    {
+        if(CheckBoundary(positionOnGrid)){
+          if(gridMap[positionOnGrid.x, positionOnGrid.y].gridObject == gridObject)
+          { return;}
+          gridMap[positionOnGrid.x, positionOnGrid.y].gridObject = null;
+        }
+        else{
+            Debug.Log("OUT OF BOUNDS");
+        }
     }
 
     public void PlaceObject(Vector2Int positionOnGrid, GridObject gridObject)
@@ -159,5 +170,6 @@ public class GridMap : MonoBehaviour
         return worldPositions;
     }
 }
+    
 
 
