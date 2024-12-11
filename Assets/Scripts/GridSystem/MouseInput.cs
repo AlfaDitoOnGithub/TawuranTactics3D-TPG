@@ -10,6 +10,7 @@ public class MouseInput : MonoBehaviour
 
     public Vector2Int positionOnGrid;
     public bool active;
+    [SerializeField] TMPro.TextMeshProUGUI positionOnScreen;
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -19,10 +20,12 @@ public class MouseInput : MonoBehaviour
             Vector2Int hitPosition = targetGrid.GetGridPosition(hit.point);
             if(hitPosition != positionOnGrid){
                 positionOnGrid = hitPosition;
+                positionOnScreen.text = "Position= "+positionOnGrid.x.ToString() +" : "+positionOnGrid.y.ToString();
             }
         }
         else{
             active = false;
+            positionOnScreen.text = "Position= OUTSIDE";
         }
     }
 }

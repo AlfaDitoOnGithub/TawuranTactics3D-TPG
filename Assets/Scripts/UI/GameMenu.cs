@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GameMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject panel;
+    SelectCharacter selectCharacter;
+    private void Awake()
     {
-        
+        selectCharacter = GetComponent<SelectCharacter>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update()
+    {   
+        if(selectCharacter.enabled == false) {return;}
+        if(Input.GetMouseButtonDown(1)){
+            panel.SetActive(true);
+        }    
     }
 }

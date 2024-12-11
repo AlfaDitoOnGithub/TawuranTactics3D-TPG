@@ -32,7 +32,7 @@ public class CommandManager : MonoBehaviour
 
     private void Awake()
     {
-        clearUtility.GetComponent<ClearUtility>();
+        clearUtility = GetComponent<ClearUtility>();
     }
 
     private void Start()
